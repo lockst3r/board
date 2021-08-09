@@ -7,6 +7,7 @@ const useStyles = makeStyles({
   main: {
     backgroundColor: background,
     height: '100vh',
+    minWidth: 1400
   },
 })
 

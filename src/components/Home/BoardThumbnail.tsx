@@ -68,8 +68,6 @@ const _BoardThumbnail = (props: BoardThumbnailProps) => {
   }
 
   const handleDeleteBoard = (e) => {
-    e
-    debugger
     deleteBoard(id)
   }
 

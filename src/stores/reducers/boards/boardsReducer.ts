@@ -26,7 +26,7 @@ const boardsReducer = (state = initialState, action) => {
     case ADD_LIST: {
       const { boardID, id } = action.payload
       const board = state[boardID]
-      debugger
+      
       const newListID = `list-${id}`
       const newLists = [...board.lists, newListID]
       board.lists = newLists
@@ -57,8 +57,9 @@ const boardsReducer = (state = initialState, action) => {
     case DELETE_LIST: {
       const { listID, boardID } = action.payload
       const board = state[boardID]
+      
       const lists = board.lists
-      debugger
+      
       const newLists = lists.filter((id) => id !== listID)
       board.lists = newLists
       return { ...state, [boardID]: board }

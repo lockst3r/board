@@ -7,15 +7,12 @@ import { addCard } from '../../stores/actions/cardsActions'
 import { addList } from '../../stores/actions/listsActions'
 import TrelloForm from '../TrelloForm'
 import TrelloOpenForm from '../TrelloOpenForm'
-import { makeStyles} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 //import { ReportOutlined } from '@material-ui/icons'
 
+const useStyles = makeStyles({})
 
-const useStyles = makeStyles({
-
-})
-
-const TrelloCreate = ({ listID, list, addList }) => {
+const TrelloCreate = ({ listID, list, addList, addCard }) => {
   const [formOpen, setFormOpen] = React.useState(false)
   const [text, setText] = React.useState('')
 
@@ -47,7 +44,6 @@ const TrelloCreate = ({ listID, list, addList }) => {
     }
   }
 
-
   return formOpen ? (
     <TrelloForm
       text={text}
@@ -68,6 +64,7 @@ const TrelloCreate = ({ listID, list, addList }) => {
 
 const mapDispatch = {
   addList,
+  addCard,
 }
 
 export default connect(null, mapDispatch)(TrelloCreate)

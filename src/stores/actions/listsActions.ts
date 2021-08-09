@@ -35,7 +35,7 @@ export const moveTask: moveTaskActionCreator = (
   type
 ) => {
   return {
-    type: DRAG_HAPPENED,
+    type: MOVE_TASK,
     payload: {
       droppableIdStart,
       droppableIdEnd,
@@ -49,7 +49,7 @@ export const moveTask: moveTaskActionCreator = (
 
 export const deleteList = (listID) => {
   return {
-    type: DELETE_LIST,
+    type: REMOVE_LIST,
     payload: {
       listID,
     },

@@ -48,7 +48,7 @@ const TrelloForm = ({ list, text = '', onChange, closeForm, children }) => {
       <Card className={classes.card}>
         <Textarea
           placeholder={placeholder}
-          //autoFocus
+          autoFocus={true}
           onFocus={handleFocus}
           value={text}
           onChange={(e) => onChange(e)}
@@ -58,7 +58,7 @@ const TrelloForm = ({ list, text = '', onChange, closeForm, children }) => {
       </Card>
       <Box className={classes.buttonContainer}>
         {children}
-        <IconButton icon={<CloseIcon />} onMouseDown={closeForm} />
+        <IconButton icon={<CloseIcon />} onMouseDown={closeForm} size={'medium'}/>
       </Box>
     </Box>
   )

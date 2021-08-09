@@ -6,13 +6,14 @@ import {
   DELETE_LIST,
   CREATE_LIST,
   REMOVE_LIST,
+  MOVE_TASK,
 } from '../../actions/listsActions'
 import { IMoveTask } from '../../../types/actionsTypes'
 export function* deleteList({ payload }) {
   const { listID } = payload
   const state = yield select()
   const boardID = state.activeBoard
-debugger
+
   yield put({
     type: DELETE_LIST,
     payload: {
@@ -66,6 +67,6 @@ export function* addList({ payload }) {
 
 export function* listSaga(): Generator<StrictEffect> {
   yield takeEvery(REMOVE_LIST, deleteList)
-  yield takeEvery('MOVE_TASK', moveTask)
+  yield takeEvery(MOVE_TASK, moveTask)
   yield takeEvery(CREATE_LIST, addList)
 }

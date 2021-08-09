@@ -5,41 +5,25 @@ import TrelloCreate from '../TrelloCreate'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { setActiveBoard } from '../../stores/actions/boardsActions'
 import { moveTask } from '../../stores/actions/listsActions'
-import { Link } from 'react-router-dom'
-import { Grid, makeStyles } from '@material-ui/core'
+import { Link, useHistory } from 'react-router-dom'
+import { Grid, makeStyles, Typography } from '@material-ui/core'
 import { MainTitle } from '../Common/Typography/MainTitle'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import { IconButton } from '../Common/Buttons/IconButton'
+import { FullscreenExitTwoTone } from '@material-ui/icons'
 
 const useStyles = makeStyles({
-  titleContainer: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    cursor: 'pointer',
-  },
-  deleteButton: {
-    cursor: 'pointer',
-    transition: 'opacity 0.3s ease-in-out',
-    opacity: '0.4',
-    '&:hover': {
-      opacity: 0.8,
-    },
-  },
-  title: {
-    fontSize: '48px',
-    color: 'white',
-    fontWeight: 'bold',
-    textShadow: 'inherit',
-  },
-  boardsContainer: {
-    flex: 1,
-    height: '50%',
-    margin: '0 auto',
+  listsConteiner: {
     display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    marginLeft: 20,
+  },
+  backContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  title: {
+    textAlign: 'center',
   },
 })
 
@@ -47,12 +31,17 @@ const TrelloBoard = (props) => {
   const classes = useStyles()
   const { lists, cards, match, boards } = props
   const { boardID } = match.params
-  debugger
+  const history = useHistory()
   const board = boards[boardID]
   const listOrder = board.lists
+
   React.useEffect(() => {
     props.setActiveBoard(boardID)
   }, [])
+
+  const moveHome = () => {
+    history.push(`/`)
+  }
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type } = result
@@ -61,7 +50,7 @@ const TrelloBoard = (props) => {
       return
     }
 
-    moveTask(
+    props.moveTask(
       source.droppableId,
       destination.droppableId,
       source.index,
@@ -74,23 +63,30 @@ const TrelloBoard = (props) => {
   if (!board) {
     return <p>Board not found</p>
   }
-  
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Link to="/">Go Back</Link>
+      <Grid className={classes.backContainer}>
+        <IconButton
+          icon={<ArrowBackIcon />}
+          onClick={moveHome}
+          size={'medium'}
+        />
+        <Typography className={classes.title}>Move Home</Typography>
+      </Grid>
+      <Grid className={classes.title}>
       <MainTitle>{board.title}</MainTitle>
+      </Grid>
       <Droppable droppableId="all-lists" direction="horizontal" type="list">
         {(provided) => (
           <Grid
-            dispau={'flex'}
-            direction={'row'}
-            container
+            className={classes.listsConteiner}
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
             {listOrder.map((listID, index) => {
               const list = lists[listID]
-              debugger
+
               if (list) {
                 const listCards = list.cards.map((cardID) => cards[cardID])
 
@@ -124,6 +120,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatch = {
   setActiveBoard,
+  moveTask,
 }
 
 export default connect(mapStateToProps, mapDispatch)(TrelloBoard)

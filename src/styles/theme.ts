@@ -1,5 +1,5 @@
-import { createTheme, Theme, createMuiTheme } from '@material-ui/core'
-import createPalette, { Palette } from '@material-ui/core/styles/createPalette'
+import { Theme, createMuiTheme } from '@material-ui/core'
+import createPalette from '@material-ui/core/styles/createPalette'
 import { primary, secondary } from './colors'
 
 const palette = createPalette({
@@ -13,12 +13,6 @@ const palette = createPalette({
 
 export const theme: Theme = createMuiTheme({
   props: {
-    MuiFormControl: {
-      
-    },
-    MuiOutlinedInput: {
-     
-    },
     MuiFormControl: {
       fullWidth: true,
     },

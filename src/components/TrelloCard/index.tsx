@@ -5,6 +5,7 @@ import { editCard, deleteCard } from '../../stores/actions/cardsActions'
 import { connect } from 'react-redux'
 import TrelloForm from '../TrelloForm'
 import TrelloButton from '../TrelloButton'
+import EditIcon from '@material-ui/icons/Edit'
 import Icon from '@material-ui/core/Icon'
 import { IconButton } from '../Common/Buttons/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -14,6 +15,21 @@ const useStyles = makeStyles({
     position: 'relative',
     maxWidth: '100%',
     wordWrap: 'break-word',
+  },
+  icon: {
+    position: 'absolute',
+    //display: 'none',
+    right: 5,
+    top: 5,
+    opacity: '0.5',
+    
+  },
+  icon2: {
+    position: 'absolute',
+    //display: 'none',
+    right: 5,
+    bottom: 5,
+    opacity: '0.5',
   },
 })
 
@@ -65,12 +81,14 @@ const _TrelloCard = ({ text, id, listID, index, dispatch }) => {
             ref={provided.innerRef}
             onDoubleClick={() => setIsEditing(true)}
           >
-            <Card>
+            <Card style={{minHeight: 60}}>
               <IconButton
+                className={classes.icon}
                 onMouseDown={() => setIsEditing(true)}
-                icon={<DeleteIcon />}
+                icon={<EditIcon />}
               />
               <IconButton
+                className={classes.icon2}
                 onMouseDown={handleDeleteCard}
                 icon={<DeleteIcon />}
               />

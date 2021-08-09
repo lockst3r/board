@@ -12,7 +12,7 @@ const cardsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CARD: {
       const { text, listID, id } = action.payload
-
+      debugger
       const newCard = {
         text,
         id: `card-${id}`,

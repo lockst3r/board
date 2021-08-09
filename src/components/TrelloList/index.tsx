@@ -68,7 +68,7 @@ const TrelloList = ({ title, cards, listID, index, deleteList }) => {
   const classes = useStyles()
   const [isEditing, setIsEditing] = useState(false)
   const [listTitle, setListTitle] = useState(title)
- debugger
+ 
   const renderEditInput = () => {
     return (
       <form onSubmit={handleFinishEditing}>
