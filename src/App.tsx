@@ -1,12 +1,22 @@
-import { Counter } from './Counter'
-import Button from '@material-ui/core/Button'
+import * as React from 'react'
+import { AppRouter } from './routes/index'
+import { makeStyles } from '@material-ui/core'
+import { background } from './styles/colors'
 
-export const App = () => {
+const useStyles = makeStyles({
+  main: {
+    backgroundColor: background,
+    height: '100vh',
+  },
+})
+
+const App: React.FC = () => {
+  const classes = useStyles()
   return (
-    <>
-      <Button variant="contained">Default</Button>
-      <h1>React TypeScript Webpack Starter Template</h1>
-      <Counter />
-    </>
+    <main className={classes.main}>
+      <AppRouter />
+    </main>
   )
 }
+
+export default App
