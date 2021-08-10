@@ -22,7 +22,7 @@ const cardsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CARD: {
       const { text, listID, id } = action.payload
-      debugger
+      
       const newCard = {
         text,
         id: `card-${id}`,
@@ -45,13 +45,13 @@ const cardsReducer = (state = initialState, action) => {
       return newState
     }
 
-    case ActionsType.ADD_MEMBER_REQUESTED:
+    /* case ActionsType.ADD_MEMBER_REQUESTED:
       {
         const { listID, name, memberID, avatar } = action.payload
       }
       const newMember = {
         name,
-      }
+      } */
     default:
       return state
   }

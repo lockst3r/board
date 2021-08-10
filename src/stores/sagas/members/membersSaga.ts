@@ -1,23 +1,17 @@
 import * as ActionsType from '../../../constants/ActionType'
-import { call, takeEvery, put, apply } from 'redux-saga/effects'
+import { call, takeEvery, put,apply } from 'redux-saga/effects'
 import { baseUrl } from '../../../utils/index'
 import { api } from '../api'
 
-export function* fetchMembers() {
+export function* fetchMembers(action) {
+  debugger  
   try {
-    const board = yield call(api, `${baseUrl}/members`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: '',
-    })
-
-    const { _id, name, avatar } = board
+    const request = yield call(fetch, `${baseUrl}/members`)
+    const data = yield apply(request, request.json, []);
     debugger
     yield put({
-      type: ActionsType.FETCH_MEMBER_SUCCEEDED,
-      payload: { _id, name, avatar },
+      type: ActionsType.FETCH_MEMBERS_SUCCEEDED,
+      payload: data,
     })
   } catch (e) {
     throw new Error(e.message)
@@ -25,5 +19,6 @@ export function* fetchMembers() {
 }
 
 export function* membersSaga() {
-  yield takeEvery(ActionsType.ADD_BOARD_REQUESTED, fetchMembers)
+  debugger
+  yield takeEvery(ActionsType.FETCH_MEMBERS_REQUESTED, fetchMembers)
 }

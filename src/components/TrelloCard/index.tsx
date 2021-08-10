@@ -105,7 +105,7 @@ const _TrelloCard = ({ text, id, listID, index, dispatch }) => {
             </Grid>
           )}
         </Draggable>
-       {/*  <CardModal /> */}
+         <CardModal /> 
       </>
     )
   }

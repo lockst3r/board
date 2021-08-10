@@ -8,7 +8,7 @@ export const Modal = (props) => {
   const { children, ...otherProps } = props
   const dispatch = useDispatch()
   const show = useSelector((state) => modalSelector(state))
-debugger
+
   const hideModal = () => {
     dispatch(closeModal())
   }

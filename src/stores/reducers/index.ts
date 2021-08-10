@@ -4,7 +4,7 @@ import cardsReducer from './cards/cardsReducer'
 import boardsReducer from './boards/boardsReducer'
 import boardOrderReducer from './boards/boardOrderReducer'
 import activeBoardReducer from './boards/activeBoardReducer'
-import { memberReducer } from '../reducers/members/membersReducer'
+import { membersReducer } from '../reducers/members/membersReducer'
 import modalReducer from '../reducers/boards/modalReducer'
 export const rootReducer = combineReducers({
   lists: listsReducer,
@@ -12,6 +12,6 @@ export const rootReducer = combineReducers({
   boards: boardsReducer,
   boardOrder: boardOrderReducer,
   activeBoard: activeBoardReducer,
-  members: memberReducer,
+  members: membersReducer,
   modal: modalReducer,
 })

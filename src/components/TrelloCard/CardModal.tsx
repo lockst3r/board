@@ -38,12 +38,13 @@ interface ICardModal {
 }
 
 export const CardModal = () => {
+  const dispatch = useDispatch()
   React.useEffect(() => {
     dispatch(fetchMembers())
-  }, [members])
+  }, [])
   const classes = useStyles()
   const members = useSelector((state) => membersSelectors(state))
-  const dispatch = useDispatch()
+ 
 debugger
  
 
@@ -61,7 +62,7 @@ debugger
           <Grid>
             <DialogContentText>Members</DialogContentText>
             <Grid container direction="row">
-              {members.map((member, ind) => (
+               {members.map((member, ind) => (
                 <Avatar key={ind} alt={member.name} src={member.avatar} />
               ))}
               <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />

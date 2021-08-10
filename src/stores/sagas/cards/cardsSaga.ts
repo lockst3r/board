@@ -1,4 +1,4 @@
-import { call, takeEvery, put, apply } from 'redux-saga/effects'
+/* import { call, takeEvery, put, apply } from 'redux-saga/effects'
 import { baseUrl } from '../../../utils/index'
 import { api } from '../api'
 import * as ActionTypes from '../../../constants/ActionType'
@@ -26,4 +26,4 @@ export function* addCard({ payload }) {
 
 export function* boardsSaga() {
   yield takeEvery(ActionTypes.ADD_BOARD_REQUESTED, addBoard)
-}
+} */
