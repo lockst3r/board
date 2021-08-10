@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
@@ -23,8 +22,8 @@ import AddIcon from '@material-ui/icons/Add'
 import { fetchMembers } from '../../stores/actions/membersActions'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { Modal } from '../Common/Modal/index'
-import { TrafficRounded } from '@material-ui/icons'
-import { membersSelectors } from '../../stores/selectors'
+import { membersSelectors, modalSelector } from '../../stores/selectors'
+import { closeModal, showSubmodal } from '../../stores/actions/modalCardActions'
 const useStyles = makeStyles({
   title: {
     display: 'flex',
@@ -38,23 +37,36 @@ interface ICardModal {
 }
 
 export const CardModal = () => {
+
   const dispatch = useDispatch()
+
   React.useEffect(() => {
     dispatch(fetchMembers())
   }, [])
+  debugger
   const classes = useStyles()
+  const show = useSelector((state) => modalSelector(state))
   const members = useSelector((state) => membersSelectors(state))
- 
-debugger
- 
 
+  const hideModal = () => {
+    dispatch(closeModal())
+  }
+
+  const showListMembers = () => {
+    dispatch(showSubmodal())
+  }
 
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
     <div>
-      <Modal fullScreen={fullScreen} aria-labelledby="responsive-dialog-title">
+      <Modal
+        open={show}
+        fullScreen={fullScreen}
+        aria-labelledby="responsive-dialog-title"
+        hideModal={hideModal}
+      >
         <DialogTitle id="responsive-dialog-title" className={classes.title}>
           {'Кароче тайтл'}
         </DialogTitle>
@@ -62,11 +74,10 @@ debugger
           <Grid>
             <DialogContentText>Members</DialogContentText>
             <Grid container direction="row">
-               {members.map((member, ind) => (
+              {members.map((member, ind) => (
                 <Avatar key={ind} alt={member.name} src={member.avatar} />
               ))}
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              <IconButton icon={<AddIcon />} />
+              <IconButton icon={<AddIcon />} onClick={showListMembers} />
             </Grid>
             <DialogContentText>Кароче тайтл</DialogContentText>
             <TextareaAutosize style={{ width: 400 }} />

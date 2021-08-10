@@ -1,6 +1,12 @@
-import { SHOW_MODAL, CLOSE_MODAL } from '../../actions/modalActions'
+import {
+  SHOW_MODAL,
+  CLOSE_MODAL,
+  SHOW_SUBMODAL,
+  CLOSE_SUBMODAL,
+} from '../../actions/modalCardActions'
 const initialState = {
   show: false,
+  showSubmodal: false,
 }
 
 const modalReducer = (state = initialState, action) => {
@@ -14,6 +20,16 @@ const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         ['show']: false,
+      }
+    case SHOW_SUBMODAL:
+      return {
+        ...state,
+        ['showSubmodal']: true,
+      }
+    case CLOSE_SUBMODAL:
+      return {
+        ...state,
+        ['showSubmodal']: false,
       }
     default:
       return state

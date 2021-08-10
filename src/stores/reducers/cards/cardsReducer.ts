@@ -45,12 +45,15 @@ const cardsReducer = (state = initialState, action) => {
       return newState
     }
 
-    /* case ActionsType.ADD_MEMBER_REQUESTED:
-      {
-        const { listID, name, memberID, avatar } = action.payload
-      }
-      const newMember = {
-        name,
+    /* case ActionsType.ADD_MEMBER_REQUESTED:{
+        const { members, id } = action.payload
+        const card = state[id]
+
+        card.members =
+        return{
+          ...state,
+
+        }
       } */
     default:
       return state

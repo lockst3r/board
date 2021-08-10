@@ -32,7 +32,7 @@ export const deleteCard: deleteCardActionCreator = (id, listID) => {
   }
 }
 
-/* export const addMember = (cardID, memberID, name) => {
+ export const addMember = (cardID, memberID, name) => {
   return {
     type: ActionsType.ADD_MEMBER_REQUESTED,
     payload: {
@@ -41,4 +41,4 @@ export const deleteCard: deleteCardActionCreator = (id, listID) => {
       name,
     },
   }
-} */
+}

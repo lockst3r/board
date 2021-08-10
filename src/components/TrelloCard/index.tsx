@@ -8,8 +8,9 @@ import TrelloButton from '../TrelloButton'
 import EditIcon from '@material-ui/icons/Edit'
 import { IconButton } from '../Common/Buttons/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { showModal } from '../../stores/actions/modalActions'
+import { showModal } from '../../stores/actions/modalCardActions'
 import { CardModal } from './CardModal'
+import { MembersModal } from './MembersModal'
 const useStyles = makeStyles({
   cardContainer: {
     margin: '0 0 8px 0',
@@ -105,7 +106,8 @@ const _TrelloCard = ({ text, id, listID, index, dispatch }) => {
             </Grid>
           )}
         </Draggable>
-         <CardModal /> 
+        <MembersModal />
+        <CardModal />
       </>
     )
   }

@@ -13,3 +13,9 @@ export const modalSelector = (state: any) => {
 export const membersSelectors = (state: any) => {
   return state.members
 }
+
+export const modalSubCardSelector = (state: any) => {
+  return state.modal.showSubmodal
+}
+
+
