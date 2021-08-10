@@ -2,16 +2,14 @@ import { IBoardsList } from './stateTypes'
 
 export interface ISetActiveBoard {
   type: 'SET_ACTIVE_BOARD'
-  payload: {
-    id: string | number
-  }
+  payload: string | number
 }
 
 export interface IAddBoard {
-  type: 'ADD_BOARD'
+  type: 'ADD_BOARD_REQUESTED'
   payload: {
     title: string
-    id: string | number
+    id: number | string
   }
 }
 
@@ -50,7 +48,7 @@ export interface IEditTitle {
 }
 
 export interface IMoveTask {
-  type: 'DRAG_HAPPENED'
+  type: 'MOVE_TASK'
   payload: {
     droppableIdStart: string | number
     droppableIdEnd: string | number

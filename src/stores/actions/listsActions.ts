@@ -16,6 +16,8 @@ export const MOVE_TASK = 'MOVE_TASK'
 export const CREATE_LIST = 'CREATE_LIST'
 
 export const REMOVE_LIST = 'REMOVE_LIST'
+
+
 export const editTitle: editTitleActionCreator = (listID, newTitle) => {
   return {
     type: EDIT_LIST_TITLE,

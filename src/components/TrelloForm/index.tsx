@@ -58,7 +58,11 @@ const TrelloForm = ({ list, text = '', onChange, closeForm, children }) => {
       </Card>
       <Box className={classes.buttonContainer}>
         {children}
-        <IconButton icon={<CloseIcon />} onMouseDown={closeForm} size={'medium'}/>
+        <IconButton
+          icon={<CloseIcon />}
+          onMouseDown={closeForm}
+          size={'medium'}
+        />
       </Box>
     </Box>
   )

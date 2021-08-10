@@ -12,7 +12,7 @@ import {
   Box,
   ButtonGroup,
 } from '@material-ui/core'
-import { boardsListSelector, activeBoardSelector } from '../../stores/selectors'
+import { boardsListSelector, activeBoardSelector } from '../../stores/selectors/index'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
 import User from '../Common/User/index'

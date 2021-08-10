@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { AppRouter } from './routes/index'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Snackbar } from '@material-ui/core'
 import { background } from './styles/colors'
-
 const useStyles = makeStyles({
   main: {
     backgroundColor: background,
     height: '100vh',
-    minWidth: 1400
+    minWidth: 1400,
   },
 })
 

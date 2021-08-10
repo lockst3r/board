@@ -10,6 +10,17 @@ import {
   DELETE_LIST,
   CREATE_LIST,
 } from '../../actions/listsActions'
+import * as ActionType from '../../../constants/ActionType'
+
+const erroState = null
+
+const boardsErrorReduser = (state, action) => {
+  switch (action.payload) {
+    case ActionType.ADD_BOARD_SUCCEEDED:
+      return
+  }
+}
+
 const initialState = {
   'board-0': {
     id: 'board-0',
@@ -26,7 +37,7 @@ const boardsReducer = (state = initialState, action) => {
     case ADD_LIST: {
       const { boardID, id } = action.payload
       const board = state[boardID]
-      
+
       const newListID = `list-${id}`
       const newLists = [...board.lists, newListID]
       board.lists = newLists
@@ -57,15 +68,15 @@ const boardsReducer = (state = initialState, action) => {
     case DELETE_LIST: {
       const { listID, boardID } = action.payload
       const board = state[boardID]
-      
+
       const lists = board.lists
-      
+
       const newLists = lists.filter((id) => id !== listID)
       board.lists = newLists
       return { ...state, [boardID]: board }
     }
 
-    case ADD_BOARD: {
+    case ActionType.ADD_BOARD_SUCCEEDED: {
       const { title, id } = action.payload
       const newID = `board-${id}`
       const newBoard = {
@@ -73,9 +84,19 @@ const boardsReducer = (state = initialState, action) => {
         title,
         lists: [],
       }
-
       return { ...state, [newID]: newBoard }
     }
+    /*  case ADD_BOARD: {
+      const { title, id } = action.payload
+      const newID = `board-${id}`
+      const newBoard = {
+        id: newID,
+        title,
+        lists: [],
+      } 
+
+      return { ...state, [newID]: newBoard }
+    } */
     case EDIT_BOARD: {
       const { id, newTitle } = action.payload
       const board = state[id]

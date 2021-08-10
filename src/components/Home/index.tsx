@@ -39,7 +39,6 @@ const Home = ({ boards, boardOrder, addBoard }) => {
   }
 
   const handleSubmit = (values: ICreateBoardFormValues) => {
-    
     addBoard(values.title)
   }
 

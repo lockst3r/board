@@ -8,9 +8,7 @@ import {
   IMoveTask,
 } from './actionsTypes'
 
-export type setActiveBoardActionCreator = (
-  id: string | number
-) => ISetActiveBoard
+export type setActiveBoardActionCreator = (id: string) => ISetActiveBoard
 
 export type addBoardActionCreator = (title: string) => IAddBoard
 

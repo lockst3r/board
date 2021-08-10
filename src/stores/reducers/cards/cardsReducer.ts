@@ -1,10 +1,20 @@
 import { ADD_CARD, EDIT_CARD, DELETE_CARD } from '../../actions/cardsActions'
-
+import * as ActionsType from '../../../constants/ActionType'
 const initialState = {
   'card-0': {
     text: 'Last Episode',
     id: `card-0`,
     list: 'list-0',
+    description: 'description-0',
+    dueDate: 'due-date',
+    members: [],
+    comments: [],
+    timeTracking: {
+      estimated: 'estimated',
+      spent: 'spent',
+      remaining: 'emaining',
+    },
+    attachments: [],
   },
 }
 
@@ -34,6 +44,14 @@ const cardsReducer = (state = initialState, action) => {
       delete newState[id]
       return newState
     }
+
+    case ActionsType.ADD_MEMBER_REQUESTED:
+      {
+        const { listID, name, memberID, avatar } = action.payload
+      }
+      const newMember = {
+        name,
+      }
     default:
       return state
   }

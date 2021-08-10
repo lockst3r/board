@@ -99,7 +99,7 @@ const listsReducer = (state = initialState, action) => {
     case DELETE_LIST: {
       const { listID } = action.payload
       const newState = state
-      
+
       delete newState[listID]
       return newState
     }

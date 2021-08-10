@@ -6,9 +6,10 @@ import { connect } from 'react-redux'
 import TrelloForm from '../TrelloForm'
 import TrelloButton from '../TrelloButton'
 import EditIcon from '@material-ui/icons/Edit'
-import Icon from '@material-ui/core/Icon'
 import { IconButton } from '../Common/Buttons/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { showModal } from '../../stores/actions/modalActions'
+import { CardModal } from '../TrelloCard/CardModal'
 const useStyles = makeStyles({
   cardContainer: {
     margin: '0 0 8px 0',
@@ -22,7 +23,6 @@ const useStyles = makeStyles({
     right: 5,
     top: 5,
     opacity: '0.5',
-    
   },
   icon2: {
     position: 'absolute',
@@ -53,7 +53,6 @@ const _TrelloCard = ({ text, id, listID, index, dispatch }) => {
   }
 
   const handleDeleteCard = () => {
-    console.log(listID)
     dispatch(deleteCard(id, listID))
   }
 
@@ -70,18 +69,23 @@ const _TrelloCard = ({ text, id, listID, index, dispatch }) => {
     )
   }
 
+  const openModal = () => {
+    dispatch(showModal(<CardModal />))
+  }
+
   const renderCard = () => {
     return (
       <Draggable draggableId={String(id)} index={index}>
         {(provided) => (
           <Grid
             className={classes.cardContainer}
+            onClick={openModal}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             onDoubleClick={() => setIsEditing(true)}
           >
-            <Card style={{minHeight: 60}}>
+            <Card style={{ minHeight: 60 }}>
               <IconButton
                 className={classes.icon}
                 onMouseDown={() => setIsEditing(true)}

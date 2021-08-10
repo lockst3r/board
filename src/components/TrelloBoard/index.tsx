@@ -10,8 +10,8 @@ import { Grid, makeStyles, Typography } from '@material-ui/core'
 import { MainTitle } from '../Common/Typography/MainTitle'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import { IconButton } from '../Common/Buttons/IconButton'
-import { FullscreenExitTwoTone } from '@material-ui/icons'
-
+import { moveTaskActionCreator } from '../../types/actionCreatorTypes'
+//import _CardModal from '../TrelloCard/CardModal'
 const useStyles = makeStyles({
   listsConteiner: {
     display: 'flex',
@@ -26,6 +26,12 @@ const useStyles = makeStyles({
     textAlign: 'center',
   },
 })
+
+/* interface TreelloBordProps{
+  setActiveBoard: () => void
+  moveTask: moveTaskActionCreator,
+  lists: any
+} */
 
 const TrelloBoard = (props) => {
   const classes = useStyles()
@@ -75,8 +81,9 @@ const TrelloBoard = (props) => {
         <Typography className={classes.title}>Move Home</Typography>
       </Grid>
       <Grid className={classes.title}>
-      <MainTitle>{board.title}</MainTitle>
+        <MainTitle>{board.title}</MainTitle>
       </Grid>
+      {/* <CardModal /> */}
       <Droppable droppableId="all-lists" direction="horizontal" type="list">
         {(provided) => (
           <Grid

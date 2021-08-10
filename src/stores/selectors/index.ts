@@ -5,3 +5,7 @@ export const boardsSelector = (state: any) => {
 export const boardOrderSelector = (state: any) => {
   return state.boardOrder
 }
+
+export const modalSelector = (state: any) => {
+  return state.modal.show
+}

@@ -3,7 +3,7 @@ import { baseUrl } from '../../../utils/index'
 import { api } from '../api'
 import * as ActionTypes from '../../../constants/ActionType'
 
-export function* addBoard({ payload }) {
+export function* addCard({ payload }) {
   try {
     const board = yield call(api, `${baseUrl}/bords`, {
       method: 'POST',
