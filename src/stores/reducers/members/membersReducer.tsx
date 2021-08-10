@@ -5,6 +5,7 @@ const initialState = null
 export const memberReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionsType.FETCH_MEMBER_REQUESTED: {
+      debugger
       return action.payload
     }
     default: {

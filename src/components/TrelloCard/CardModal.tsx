@@ -21,10 +21,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { IconButton } from '../Common/Buttons/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import { fetchMembers } from '../../stores/actions/membersActions'
-import { connect } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { Modal } from '../Common/Modal/index'
 import { TrafficRounded } from '@material-ui/icons'
-
+import { membersSelectors } from '../../stores/selectors'
 const useStyles = makeStyles({
   title: {
     display: 'flex',
@@ -37,64 +37,77 @@ interface ICardModal {
   fetchMembers: () => void
 }
 
-export const CardModal: ICardModal = ({ fetchMembers, members }) => {
+export const CardModal = () => {
+  React.useEffect(() => {
+    dispatch(fetchMembers())
+  }, [members])
   const classes = useStyles()
+  const members = useSelector((state) => membersSelectors(state))
+  const dispatch = useDispatch()
+debugger
+ 
+
 
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
-    <Modal fullScreen={fullScreen} aria-labelledby="responsive-dialog-title">
-      <DialogTitle id="responsive-dialog-title" className={classes.title}>
-        {'Кароче тайтл'}
-      </DialogTitle>
-      <DialogContent>
-        <Grid>
-          <DialogContentText>Members</DialogContentText>
-          <Grid container direction="row">
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            <IconButton icon={<AddIcon />} />
+    <div>
+      <Modal fullScreen={fullScreen} aria-labelledby="responsive-dialog-title">
+        <DialogTitle id="responsive-dialog-title" className={classes.title}>
+          {'Кароче тайтл'}
+        </DialogTitle>
+        <DialogContent>
+          <Grid>
+            <DialogContentText>Members</DialogContentText>
+            <Grid container direction="row">
+              {members.map((member, ind) => (
+                <Avatar key={ind} alt={member.name} src={member.avatar} />
+              ))}
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              <IconButton icon={<AddIcon />} />
+            </Grid>
+            <DialogContentText>Кароче тайтл</DialogContentText>
+            <TextareaAutosize style={{ width: 400 }} />
           </Grid>
-          <DialogContentText>Кароче тайтл</DialogContentText>
-          <TextareaAutosize style={{ width: 400 }} />
-        </Grid>
-        <Grid>
-          {' '}
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography /* className={classes.heading}  */>
-                {' '}
-                */Accordion 1
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        </Grid>
-      </DialogContent>
-      <DialogActions>
-        <Button autoFocus onClick={handleClose} color="primary">
-          Disagree
-        </Button>
-        <Button onClick={handleClose} color="primary" autoFocus>
-          Agree
-        </Button>
-        <Checkbox />
-      </DialogActions>
-    </Modal>
+          <Grid>
+            {' '}
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography /* className={classes.heading}  */>
+                  {' '}
+                  */Accordion 1
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={() => {}} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={() => {}} color="primary" autoFocus>
+            Agree
+          </Button>
+          <Checkbox />
+        </DialogActions>
+      </Modal>
+    </div>
   )
 }
 
-const mapState = (state) => {
+/* const mapState = (state) => {
   return {
     members: state.members,
   }
@@ -103,3 +116,4 @@ const mapState = (state) => {
 const mapDispatch = {
   fetchMembers,
 }
+ */

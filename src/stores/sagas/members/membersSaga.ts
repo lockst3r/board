@@ -3,7 +3,7 @@ import { call, takeEvery, put, apply } from 'redux-saga/effects'
 import { baseUrl } from '../../../utils/index'
 import { api } from '../api'
 
-export function* fetchMembers(action) {
+export function* fetchMembers() {
   try {
     const board = yield call(api, `${baseUrl}/members`, {
       method: 'GET',
@@ -24,6 +24,6 @@ export function* fetchMembers(action) {
   }
 }
 
-export default function* usersSaga() {
+export function* membersSaga() {
   yield takeEvery(ActionsType.ADD_BOARD_REQUESTED, fetchMembers)
 }

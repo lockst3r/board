@@ -9,3 +9,7 @@ export const boardOrderSelector = (state: any) => {
 export const modalSelector = (state: any) => {
   return state.modal.show
 }
+
+export const membersSelectors = (state: any) => {
+  return state.members
+}
