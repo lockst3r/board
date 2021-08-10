@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { modalSelector } from '../../../stores/selectors'
 import { closeModal } from '../../../stores/actions/modalActions'
 
-export const _Modal = (props) => {
+export const Modal = (props) => {
   const { children, ...otherProps } = props
   const dispatch = useDispatch()
   const show = useSelector((state) => modalSelector(state))
-
+debugger
   const hideModal = () => {
     dispatch(closeModal())
   }
