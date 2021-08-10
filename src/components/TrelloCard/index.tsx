@@ -70,12 +70,13 @@ const _TrelloCard = ({ text, id, listID, index, dispatch }) => {
   }
 
   const openModal = () => {
-    dispatch(showModal(<CardModal />))
+    dispatch(showModal())
   }
 
   const renderCard = () => {
     return (
       <Draggable draggableId={String(id)} index={index}>
+        <CardModal />
         {(provided) => (
           <Grid
             className={classes.cardContainer}

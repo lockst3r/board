@@ -22,7 +22,7 @@ import { IconButton } from '../Common/Buttons/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import { fetchMembers } from '../../stores/actions/membersActions'
 import { connect } from 'react-redux'
-import {Modal} from '../Common/Modal/index'
+import { Modal } from '../Common/Modal/index'
 import { TrafficRounded } from '@material-ui/icons'
 
 const useStyles = makeStyles({
@@ -33,86 +33,64 @@ const useStyles = makeStyles({
 })
 
 interface ICardModal {
-  onClick: () => void
   members: any
   fetchMembers: () => void
 }
 
-export const _CardModal: ICardModal = ({ fetchMembers, members }) => {
+export const CardModal: ICardModal = ({ fetchMembers, members }) => {
   const classes = useStyles()
 
-  const [open, setOpen] = React.useState(false)
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-
   return (
-    <div>
-      <Modal>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open responsive dialog
-      </Button>
-      <Dialog
-        fullScreen={fullScreen}
-        open={true}
-        onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
-      >
-        <DialogTitle id="responsive-dialog-title" className={classes.title}>
-          {'Кароче тайтл'}
-        </DialogTitle>
-        <DialogContent>
-          <Grid>
-            <DialogContentText>Members</DialogContentText>
-            <Grid container direction="row">
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              <IconButton icon={<AddIcon />} />
-            </Grid>
-            <DialogContentText>Кароче тайтл</DialogContentText>
-            <TextareaAutosize style={{ width: 400 }} />
+    <Modal fullScreen={fullScreen} aria-labelledby="responsive-dialog-title">
+      <DialogTitle id="responsive-dialog-title" className={classes.title}>
+        {'Кароче тайтл'}
+      </DialogTitle>
+      <DialogContent>
+        <Grid>
+          <DialogContentText>Members</DialogContentText>
+          <Grid container direction="row">
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <IconButton icon={<AddIcon />} />
           </Grid>
-          <Grid>
-            {' '}
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography /* className={classes.heading}  */>
-                  {' '}
-                  */Accordion 1
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          </Grid>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Disagree
-          </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Agree
-          </Button>
-          <Checkbox />
-        </DialogActions>
-      </Dialog>
-      </Modal>
-    </div>
+          <DialogContentText>Кароче тайтл</DialogContentText>
+          <TextareaAutosize style={{ width: 400 }} />
+        </Grid>
+        <Grid>
+          {' '}
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography /* className={classes.heading}  */>
+                {' '}
+                */Accordion 1
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </Grid>
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={handleClose} color="primary">
+          Disagree
+        </Button>
+        <Button onClick={handleClose} color="primary" autoFocus>
+          Agree
+        </Button>
+        <Checkbox />
+      </DialogActions>
+    </Modal>
   )
 }
 
@@ -125,6 +103,3 @@ const mapState = (state) => {
 const mapDispatch = {
   fetchMembers,
 }
-
-// export CardModal = connect(mapState, mapDispatch)(_CardModal)
-

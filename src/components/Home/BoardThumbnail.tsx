@@ -67,7 +67,7 @@ const _BoardThumbnail = (props: BoardThumbnailProps) => {
     history.push(`${location.pathname}${id}`)
   }
 
-  const handleDeleteBoard = (e) => {
+  const handleDeleteBoard = () => {
     deleteBoard(id)
   }
 
