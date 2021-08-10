@@ -1,12 +1,11 @@
 import { Avatar, Box } from '@material-ui/core'
 import * as React from 'react'
-function User() {
+
+export const User = ({ avatar, name }) => {
   return (
     <Box display="flex" alignItems="center">
-      <Avatar />
-      <span style={{ padding: 5 }}>{'Naruto Sobaka'}</span>
+      <Avatar src={avatar} />
+      <span style={{ padding: 5 }}>{name}</span>
     </Box>
   )
 }
-
-export default User
